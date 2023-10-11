@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_0
+      name: player_inbubble_1
       rect:
         serializedVersion: 2
         x: 2
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_2
+      name: player_inbubble_2
       rect:
         serializedVersion: 2
         x: 32
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_15
+      name: player_idle_1
       rect:
         serializedVersion: 2
         x: 2
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_16
+      name: player_idle_2
       rect:
         serializedVersion: 2
         x: 20
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_17
+      name: player_walk_1
       rect:
         serializedVersion: 2
         x: 38
@@ -222,10 +222,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_18
+      name: player_walk_2
       rect:
         serializedVersion: 2
-        x: 56
+        x: 55
         y: 89
         width: 16
         height: 16
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_30
+      name: player_jump_1
       rect:
         serializedVersion: 2
         x: 2
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_31
+      name: player_jump_2
       rect:
         serializedVersion: 2
         x: 19
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_32
+      name: player_fall_1
       rect:
         serializedVersion: 2
         x: 36
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_33
+      name: player_jump_
       rect:
         serializedVersion: 2
         x: 54
@@ -327,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_45
+      name: player_shoot_1
       rect:
         serializedVersion: 2
         x: 2
@@ -599,6 +599,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_walk_3
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 89
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f98d5ef4a5f171244b9cac27d2dbb851
+      internalID: -1609160800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -700,6 +721,18 @@ TextureImporter:
       14078_88: 2144298455
       14078_89: 1520109384
       14078_9: -1987818060
+      player_fall_1: -1364779198
+      player_idle_1: 1406410092
+      player_idle_2: -706250808
+      player_inbubble_1: -905408807
+      player_inbubble_2: -126517809
+      player_jump_: -1884072873
+      player_jump_1: 158368398
+      player_jump_2: -328700743
+      player_shoot_1: -1856894399
+      player_walk_1: -1526735497
+      player_walk_2: 586073853
+      player_walk_3: -1609160800
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
