@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4597641421787978988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4607944266030551826}
+  m_Layer: 0
+  m_Name: BubbleOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4607944266030551826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597641421787978988}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.16, y: -0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4940212141037911756}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4940212141037911754
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,9 +46,10 @@ GameObject:
   - component: {fileID: 4940212141037911744}
   - component: {fileID: 4940212141037911745}
   - component: {fileID: 4940212141037911747}
-  m_Layer: 0
+  - component: {fileID: 4475241295914147560}
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +67,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4940212142024275434}
+  - {fileID: 4607944266030551826}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1406410092, guid: 953459e8af4145745ba3b7f4e3464cbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -105,16 +138,19 @@ MonoBehaviour:
   movement: {fileID: -7645865004933348926, guid: 72f7b62cc6f20004ca1182a059130068, type: 3}
   jump: {fileID: -7150040395321091743, guid: 72f7b62cc6f20004ca1182a059130068, type: 3}
   shoot: {fileID: -5494816496737595973, guid: 72f7b62cc6f20004ca1182a059130068, type: 3}
-  rb: {fileID: 4940212141037911744}
-  anim: {fileID: 4940212141037911747}
   bubblePrefab: {fileID: 8332077400556488520, guid: 6d801ace7e9f0f14a9fdfdf5317023c1, type: 3}
+  bubbleOrigin: {fileID: 4607944266030551826}
   movementSpeed: 4
   jumpForce: 7
   maxFallSpeed: -4
   groundCheck: {fileID: 4940212142024275434}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
+  bubbleLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isFacingRight: 1
 --- !u!114 &4940212141037911758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +337,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4475241295914147560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4940212141037911754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45b79bc5fbfdd344ac1d915d46d39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4940212142024275435
 GameObject:
   m_ObjectHideFlags: 0

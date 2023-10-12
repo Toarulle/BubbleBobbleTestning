@@ -68,12 +68,12 @@ public class PlayerTests
     [UnityTest]
     public IEnumerator PlayerInput_SpaceKeyPressed_PlayerShoots()
     {
-        var bubble = GameObject.FindAnyObjectByType<Bubble>();
+        var bubble = GameObject.FindAnyObjectByType<BubbleBehaviour>();
         Assert.Null(bubble);    //Test that no Bubble exists (before space has been pressed)
         input.Press(keyboard.spaceKey);
         yield return new WaitForSeconds(0.1f);
-        bubble = GameObject.FindAnyObjectByType<Bubble>();
-        var bubbles = GameObject.FindObjectsOfType<Bubble>();
+        bubble = GameObject.FindAnyObjectByType<BubbleBehaviour>();
+        var bubbles = GameObject.FindObjectsOfType<BubbleBehaviour>();
         Assert.NotNull(bubble); //Test that Bubble exists (after space has been pressed)
         Assert.AreEqual(1,bubbles.Length);
         yield return null;

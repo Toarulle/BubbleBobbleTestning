@@ -7,25 +7,35 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private InputActionReference movement, jump, shoot;
-    [SerializeField] private Rigidbody2D rb = null;
-    [SerializeField] private Animator anim = null;
     [SerializeField] private GameObject bubblePrefab = null;
+    [SerializeField] private Transform bubbleOrigin = null;
     
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask bubbleLayer;
     
+    private Rigidbody2D rb = null;
+    private Animator anim = null;
+    private TargetBehaviour target = null;
 
     private float movementInput;
 
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     private bool isJumping = false;
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     private static readonly int IsFalling = Animator.StringToHash("IsFalling");
     private static readonly int ShootTrigger = Animator.StringToHash("Shoot");
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        target = GetComponent<TargetBehaviour>();
+    }
 
     void Update()
     {
@@ -43,7 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetBool(IsFalling, false);
         }
 
-        if (IsOnGround() && !isJumping)
+        if (!isJumping && IsOnGround())
         {
             anim.SetBool(IsFalling, false);
             if (Math.Abs(rb.velocity.x) > 0f)
@@ -89,13 +99,14 @@ public class PlayerBehaviour : MonoBehaviour
         if (context.performed)
         {
             anim.SetTrigger(ShootTrigger);
-            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+            var bubble = Instantiate(bubblePrefab, bubbleOrigin.position, Quaternion.identity).GetComponent<BubbleBehaviour>();
+            bubble.BubbleStartingMovement(isFacingRight);
         }
     }
     
     public bool IsOnGround()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer)||Physics2D.OverlapCircle(groundCheck.position, 0.2f, bubbleLayer);
     }
     
     private void Flip()

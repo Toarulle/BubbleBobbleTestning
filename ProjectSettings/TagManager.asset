@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bubble
   - Water
   - UI
+  - Player
+  - Walls
+  - Platforms
   - Ground
-  - 
-  - 
-  - 
   - 
   - 
   - 

@@ -348,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_46
+      name: player_bubble_1
       rect:
         serializedVersion: 2
         x: 19
@@ -369,12 +369,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_47
+      name: player_bubble_3
       rect:
         serializedVersion: 2
-        x: 36
+        x: 37
         y: 53
-        width: 16
+        width: 14
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_48
+      name: player_bubble_4
       rect:
         serializedVersion: 2
         x: 51
@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_49
+      name: player_bubble_pop_1
       rect:
         serializedVersion: 2
         x: 67
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_50
+      name: player_bubble_pop_2
       rect:
         serializedVersion: 2
         x: 83
@@ -579,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_1
+      name: player_bubble_2
       rect:
         serializedVersion: 2
         x: 28
@@ -608,7 +608,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -721,6 +721,12 @@ TextureImporter:
       14078_88: 2144298455
       14078_89: 1520109384
       14078_9: -1987818060
+      player_bubble_1: -204827355
+      player_bubble_2: 578805681
+      player_bubble_3: 1011414399
+      player_bubble_4: -404953498
+      player_bubble_pop_1: -1794942512
+      player_bubble_pop_2: 764267326
       player_fall_1: -1364779198
       player_idle_1: 1406410092
       player_idle_2: -706250808
