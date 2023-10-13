@@ -7,6 +7,7 @@ using UnityEngine;
 public class BubbleBehaviour : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb = null;
+    [SerializeField] private Animator animator = null;
     [SerializeField] private float shootSpeed;
     [SerializeField] private float shootRange;
     [SerializeField] private float floatingSpeed;
@@ -20,6 +21,7 @@ public class BubbleBehaviour : MonoBehaviour
     private Collider2D collider = null;
     private bool firstMovementDone = false;
     private bool floatingDown = false;
+    private bool containEnemy = false;
     
     // Start is called before the first frame update
     void Start()
@@ -32,14 +34,15 @@ public class BubbleBehaviour : MonoBehaviour
     {
         if (!firstMovementDone && (movedAmount > shootRange || Math.Abs(rb.velocity.x) <= 0.1f))
         {
-            rb.velocity = new Vector2(0, floatingSpeed);
-            collider.isTrigger = false;
-            firstMovementDone = true;
-            movedAmount = 0f;
+            TurnToBigBubble();
+        }
+        else if (!firstMovementDone)
+        {
+            RecordDistance();
         }
         else
         {
-            RecordDistance();
+            rb.velocity = new Vector2(rb.velocity.x, floatingSpeed);
         }
     }
 
@@ -56,7 +59,14 @@ public class BubbleBehaviour : MonoBehaviour
             rb.velocity = new Vector2(0, floatingSpeed);
         }
     }
-    
+
+    private void TurnToBigBubble()
+    {
+        rb.velocity = new Vector2(0, floatingSpeed);
+        collider.isTrigger = false;
+        firstMovementDone = true;
+        movedAmount = 0f;
+    }
     public void BubbleStartingMovement(bool moveRight)
     {
         rb.velocity = new Vector2(moveRight ? shootSpeed : -shootSpeed, 0);
@@ -67,5 +77,38 @@ public class BubbleBehaviour : MonoBehaviour
         var currentPos = transform.position;
         movedAmount += Vector2.Distance(currentPos, previousLocation);
         previousLocation = currentPos;
+    }
+
+    private void CatchEnemyInBubble(TargetBehaviour target)
+    {
+        target.transform.SetParent(transform);
+        target.Attack();
+        containEnemy = true;
+        TurnToBigBubble();
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!containEnemy && col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            CatchEnemyInBubble(col.GetComponent<TargetBehaviour>());
+        }
+        if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
+        {
+            TurnToBigBubble();
+        }
+
+        string trigger = "";
+        switch (col.tag)
+        {
+            case "ZenChan":
+                trigger = "HoldingZenChan";
+                break;
+        }
+
+        if (trigger != "")
+        {
+            animator.SetTrigger(trigger);
+        }
     }
 }

@@ -7,7 +7,7 @@ public class TargetBehaviour : MonoBehaviour
 {
     public UnityAction<TargetBehaviour> onAttack = delegate{};
 
-    public void Attack(TargetBehaviour target)
+    public void Attack()
     {
         onAttack(this);
     }
