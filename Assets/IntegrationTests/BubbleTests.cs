@@ -13,6 +13,7 @@ public class BubbleTests
     private Scene scene = new Scene();
 
     private BubbleBehaviour bubbleBehaviour = null;
+    private ZenChanBehaviour zenChanEnemy = null;
 
     [UnitySetUp]
     public IEnumerator Setup()
@@ -21,6 +22,8 @@ public class BubbleTests
         scene = SceneManager.GetSceneByName(sceneName);
         SceneManager.SetActiveScene(scene);
         bubbleBehaviour = Object.FindObjectOfType<BubbleBehaviour>();
+        zenChanEnemy = Object.FindObjectOfType<ZenChanBehaviour>();
+        zenChanEnemy.gameObject.SetActive(false);
         yield return null;
     }
 
@@ -29,11 +32,12 @@ public class BubbleTests
     {
         yield return SceneManager.UnloadSceneAsync(scene);
         bubbleBehaviour = null;
+        zenChanEnemy = null;
         yield return null;
     }
 
     [UnityTest]
-    public IEnumerator Bubble_BubbleStartingMovement_PlayerIsFacingRight_BubbleMovesRight()
+    public IEnumerator Bubble_StartingMovement_PlayerIsFacingRight_BubbleMovesRight()
     {
         var x0 = bubbleBehaviour.transform.position.x;
         bool playerFacingRight = true;
@@ -45,7 +49,7 @@ public class BubbleTests
     }
     
     [UnityTest]
-    public IEnumerator Bubble_BubbleStartingMovement_PlayerIsFacingLeft_BubbleMovesLeft()
+    public IEnumerator Bubble_StartingMovement_PlayerIsFacingLeft_BubbleMovesLeft()
     {
         var x0 = bubbleBehaviour.transform.position.x;
         bool playerFacingRight = false;
@@ -55,6 +59,18 @@ public class BubbleTests
         Assert.Greater(x0,x1); //Test bubble first X position is greater than second (moved left)
         yield return null;
     }
-    
-    
+
+    [UnityTest]
+    public IEnumerator Bubble_StartingMovementRight_CatchEnemy()
+    {
+        bool playerFacingRight = true;
+        zenChanEnemy.gameObject.SetActive(true);
+        Assert.True(zenChanEnemy.transform.parent == null);
+        bubbleBehaviour.BubbleStartingMovement(playerFacingRight);
+        bubbleBehaviour.GetComponent<Collider2D>().isTrigger = true;
+        bubbleBehaviour.firstMovementDone = false; //is for some reason not false as it should be, in the tests..
+        yield return new WaitForSeconds(0.2f);
+        Assert.True(zenChanEnemy.transform.parent == bubbleBehaviour.transform);
+        yield return null;
+    }
 }

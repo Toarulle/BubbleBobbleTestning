@@ -7,14 +7,18 @@ public class ZenChanBehaviour : MonoBehaviour
 {
     [SerializeField] private float aggroRange = 0;
     [SerializeField] private float speed = 0;
+    [SerializeField] private float angrySpeed = 0;
     [SerializeField] private float maxFallSpeed = 0;
     [SerializeField] private TargetBehaviour target = null;
+    [SerializeField] private Animator anim = null;
     private Rigidbody2D rb = null;
 
     public bool isFacingRight = false;
-    private bool isCaught = false;
+    private bool isCaught = true;
+    public bool isAngry = false;
+    private static readonly int Angry = Animator.StringToHash("angry");
 
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,6 +27,9 @@ public class ZenChanBehaviour : MonoBehaviour
             Flip();
             isFacingRight = true;
         }
+
+        GetComponent<Collider2D>().isTrigger = true;
+        rb.isKinematic = true;
     }
 
     void Update()
@@ -43,7 +50,20 @@ public class ZenChanBehaviour : MonoBehaviour
         // }
         if (isCaught)
         {
-            
+            if (transform.parent == null)
+            {
+                anim.SetBool(Angry, isAngry);
+                GetComponent<Collider2D>().isTrigger = false;
+                rb.isKinematic = false;
+                rb.velocity = new Vector2(isFacingRight ? speed : -speed, rb.velocity.y);
+                isCaught = false;
+                return;
+            }
+
+            if (transform.parent.CompareTag("Bubble"))
+            {
+
+            }
         }
         else
         {
@@ -82,9 +102,10 @@ public class ZenChanBehaviour : MonoBehaviour
 
     public void CaughtInBubble(TargetBehaviour target)
     {
+        isAngry = true;
+        speed = angrySpeed;
         isCaught = true;
         rb.velocity = Vector2.zero;
-        gameObject.SetActive(false);
     }
     
     private void Flip()

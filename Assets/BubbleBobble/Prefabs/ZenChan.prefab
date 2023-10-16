@@ -103,9 +103,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aggroRange: 4.2
   speed: 1.5
+  angrySpeed: 2.2
   maxFallSpeed: -3
   target: {fileID: 5504690921413868971}
+  anim: {fileID: 1795540507}
   isFacingRight: 0
+  isAngry: 0
 --- !u!50 &1406698878
 Rigidbody2D:
   serializedVersion: 4
