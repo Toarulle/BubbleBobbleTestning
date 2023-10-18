@@ -101,9 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce64d38f389d0d4499f5d2db8ed0173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
   aggroRange: 4.2
   speed: 1.5
   angrySpeed: 2.2
+  angryTime: 6
   maxFallSpeed: -3
   target: {fileID: 5504690921413868971}
   anim: {fileID: 1795540507}

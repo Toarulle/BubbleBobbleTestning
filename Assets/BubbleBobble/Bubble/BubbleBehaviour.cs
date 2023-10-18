@@ -102,8 +102,12 @@ public class BubbleBehaviour : MonoBehaviour
         rb.isKinematic = true;
         floatingSpeed = 0;
         collider.isTrigger = true;
+        containTimer = 0;
+        if (containEnemy)
+        {
+            GameBehaviour.Instance.PopBubbleWithEnemySound();
+        }
         PopCloseBubbles();
-        
     }
     
     private void TurnToBigBubble()
@@ -163,6 +167,9 @@ public class BubbleBehaviour : MonoBehaviour
         {
             case "ZenChan":
                 trigger = "HoldingZenChan";
+                break;
+            case "Maita":
+                trigger = "HoldingMaita";
                 break;
         }
 

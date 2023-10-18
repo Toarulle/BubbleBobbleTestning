@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private InputActionReference movement, jump, shoot;
     [SerializeField] private GameObject bubblePrefab = null;
+    [SerializeField] private AudioClip shootAudio  = null;
     [SerializeField] private Transform bubbleOrigin = null;
     
     [SerializeField] private float movementSpeed;
@@ -82,6 +83,7 @@ public class PlayerBehaviour : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.SetBool(IsJumping, true);
             isJumping = true;
+            GameBehaviour.Instance.PlayerJumpSound();
         }
 
         if (context.canceled && rb.velocity.y > 0f)
@@ -101,6 +103,7 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetTrigger(ShootTrigger);
             var bubble = Instantiate(bubblePrefab, bubbleOrigin.position, Quaternion.identity).GetComponent<BubbleBehaviour>();
             bubble.BubbleStartingMovement(isFacingRight);
+            GameBehaviour.Instance.ShootBubbleSound();
         }
     }
     

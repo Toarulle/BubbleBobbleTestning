@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemies_0
+      name: enemies_zenchan_0
       rect:
         serializedVersion: 2
         x: 5
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_1
+      name: enemies_zenchan_1
       rect:
         serializedVersion: 2
         x: 26
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_2
+      name: enemies_zenchan_2
       rect:
         serializedVersion: 2
         x: 47
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_3
+      name: enemies_zenchan_3
       rect:
         serializedVersion: 2
         x: 68
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_16
+      name: enemies_maita_0
       rect:
         serializedVersion: 2
         x: 5
@@ -474,7 +474,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_17
+      name: enemies_maita_1
       rect:
         serializedVersion: 2
         x: 26
@@ -495,7 +495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_18
+      name: enemies_maita_2
       rect:
         serializedVersion: 2
         x: 47
@@ -516,7 +516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_19
+      name: enemies_maita_3
       rect:
         serializedVersion: 2
         x: 68
@@ -579,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_22
+      name: enemies_maita_bubble_0
       rect:
         serializedVersion: 2
         x: 131
@@ -600,7 +600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_23
+      name: enemies_maita_bubble_1
       rect:
         serializedVersion: 2
         x: 152
@@ -789,7 +789,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_32
+      name: enemies_maita_attack_0
       rect:
         serializedVersion: 2
         x: 5
@@ -810,7 +810,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_33
+      name: enemies_maita_attack_1
       rect:
         serializedVersion: 2
         x: 26
@@ -831,7 +831,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_34
+      name: enemies_maita_attack_2
       rect:
         serializedVersion: 2
         x: 47
@@ -852,7 +852,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_35
+      name: enemies_maita_attack_3
       rect:
         serializedVersion: 2
         x: 68
@@ -873,7 +873,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_36
+      name: enemies_maita_attack_4
       rect:
         serializedVersion: 2
         x: 89
@@ -894,7 +894,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemies_37
+      name: enemies_maita_attack_5
       rect:
         serializedVersion: 2
         x: 110
@@ -4012,8 +4012,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemies_0: -396522542
-      enemies_1: 1954643249
       enemies_10: 1009379014
       enemies_100: -1844546502
       enemies_101: -619969426
@@ -4080,210 +4078,212 @@ TextureImporter:
       enemies_157: -1897517608
       enemies_158: -1088509675
       enemies_159: -1684372733
-      enemies_16: -1030796739
-      enemies_160: -854238695
-      enemies_161: 1565556727
-      enemies_162: -995695871
-      enemies_163: -933608798
-      enemies_164: 1778808451
-      enemies_165: -1817606349
-      enemies_166: -1038861986
-      enemies_167: 1562150699
-      enemies_168: -141506638
-      enemies_169: -1691296114
-      enemies_17: -316839914
-      enemies_170: 370732542
-      enemies_171: 1412317600
-      enemies_172: -853714075
-      enemies_173: 476407051
-      enemies_174: -643228880
-      enemies_175: -602522876
-      enemies_176: 963807662
-      enemies_177: 1310670702
-      enemies_178: 1528507191
-      enemies_179: 1642962830
-      enemies_18: -548627075
-      enemies_180: -930880449
-      enemies_181: 399281775
-      enemies_182: 375273797
-      enemies_183: -614367228
-      enemies_184: -1513920209
-      enemies_185: -1029079080
-      enemies_186: -1291977411
-      enemies_187: -2054063927
-      enemies_188: 947667685
-      enemies_189: -591954339
-      enemies_19: 32198293
-      enemies_190: -563337870
-      enemies_191: -999090996
-      enemies_192: -11205103
-      enemies_193: 734269579
-      enemies_194: 364663794
-      enemies_195: -1402711864
-      enemies_196: -300296463
-      enemies_197: 1441237678
-      enemies_198: 1695721194
-      enemies_199: 818999450
-      enemies_2: -511924726
-      enemies_20: 1259382756
-      enemies_200: -583798402
-      enemies_201: 1470279632
-      enemies_202: 254853941
-      enemies_203: 690425240
-      enemies_204: 1413527409
-      enemies_205: -341891938
-      enemies_206: 1090938252
-      enemies_207: -824626489
-      enemies_208: 1998175900
-      enemies_209: 1333942596
-      enemies_21: 1829124228
-      enemies_210: 761882981
-      enemies_211: -602969448
-      enemies_212: 945662013
-      enemies_213: 361700662
-      enemies_214: 164822056
-      enemies_215: 785655329
-      enemies_216: 601818944
-      enemies_217: -393595949
-      enemies_218: 171779822
-      enemies_219: 1586815536
-      enemies_22: 234132386
-      enemies_220: 1176515538
-      enemies_221: 1474460167
-      enemies_222: -172736335
-      enemies_223: 918786908
-      enemies_224: 1257020615
-      enemies_225: 1955905100
-      enemies_226: 442082206
-      enemies_227: -173606817
-      enemies_228: -2076016027
-      enemies_229: 755457588
-      enemies_23: -2118154158
-      enemies_230: -838843876
-      enemies_231: 930246292
-      enemies_232: 1303947349
-      enemies_233: -243507284
-      enemies_234: -1402091234
-      enemies_235: 1334014835
-      enemies_236: -1845333973
-      enemies_237: 1892196710
-      enemies_238: -103504916
-      enemies_239: 1442931328
-      enemies_24: -1555664517
-      enemies_240: 1432444590
-      enemies_241: -1194426210
-      enemies_242: -1714897570
-      enemies_243: -568785199
-      enemies_244: -1480128655
-      enemies_245: 847146135
-      enemies_246: -484752304
-      enemies_247: 833950480
-      enemies_248: 728152743
-      enemies_249: -638816132
-      enemies_25: 398527302
-      enemies_250: 1146898118
-      enemies_251: 512229762
-      enemies_252: -1695224089
-      enemies_253: -1164361463
-      enemies_254: 1103952122
-      enemies_255: 1093906017
-      enemies_256: -2050757584
-      enemies_257: -1007261907
-      enemies_258: 401157945
-      enemies_259: -932812398
-      enemies_26: -1857285661
-      enemies_260: 602376240
-      enemies_261: -284469417
-      enemies_262: -1844083985
-      enemies_263: -425061892
-      enemies_264: -425321241
-      enemies_265: 1640498801
-      enemies_266: -1528889750
-      enemies_267: -87442214
-      enemies_268: 1515680203
-      enemies_269: 856908785
-      enemies_27: 105120142
-      enemies_270: -568787013
-      enemies_271: 1662250750
-      enemies_28: 1635144654
-      enemies_29: -1067960783
-      enemies_3: -1400357977
-      enemies_30: -1312713791
-      enemies_31: 69411771
-      enemies_32: -861420535
-      enemies_33: -1697258462
-      enemies_34: 1627427267
-      enemies_35: -2085039432
-      enemies_36: -1384361713
-      enemies_37: -215787824
-      enemies_38: -49661314
-      enemies_39: -872986491
-      enemies_4: -2124784280
-      enemies_40: -238542143
-      enemies_41: 451032425
-      enemies_42: -930817036
-      enemies_43: -1474693924
-      enemies_44: 1488002968
-      enemies_45: 197451397
-      enemies_46: -2071573982
-      enemies_47: -1474787799
-      enemies_48: -504313682
-      enemies_49: -1806539590
-      enemies_5: -1063625909
-      enemies_50: -1790678738
-      enemies_51: -1693347969
-      enemies_52: -305395301
-      enemies_53: -146018695
-      enemies_54: -1615716748
-      enemies_55: -584108419
-      enemies_56: 2051629433
-      enemies_57: 1705268481
-      enemies_58: 1571056555
-      enemies_59: 618711257
-      enemies_60: -390083830
-      enemies_61: 329504302
-      enemies_62: -1836352648
-      enemies_63: 1557892021
-      enemies_64: -1987367059
-      enemies_65: -117423067
-      enemies_66: -1340885957
-      enemies_67: 681268626
-      enemies_68: -62855440
-      enemies_69: -1007990769
-      enemies_70: 182911153
-      enemies_71: 1892363910
-      enemies_72: 146585867
-      enemies_73: -1419962533
-      enemies_74: -1338499677
-      enemies_75: 552087666
-      enemies_76: -667193095
-      enemies_77: -673050519
-      enemies_78: 2090905415
-      enemies_79: 835024471
-      enemies_8: 888318971
-      enemies_80: 670732839
-      enemies_81: 660370883
-      enemies_82: 111648827
-      enemies_83: 577524749
-      enemies_84: -1961182131
-      enemies_85: 1299880247
-      enemies_86: -2118704011
-      enemies_87: -1783734117
-      enemies_88: 1074233310
-      enemies_89: 1936104110
-      enemies_9: -1814061395
-      enemies_90: -1557157988
-      enemies_91: 1476473121
-      enemies_92: 1580698038
-      enemies_93: 550184462
-      enemies_94: 155041902
-      enemies_95: -987263537
-      enemies_96: 611284483
-      enemies_97: 762711192
-      enemies_98: -882260614
-      enemies_99: -1964916600
-      enemies_zenchan_bubble_1: -473754112
-      enemies_zenchan_bubble_2: -654322799
+      enemies_160: 1565556727
+      enemies_161: -995695871
+      enemies_162: -933608798
+      enemies_163: 1778808451
+      enemies_164: -1817606349
+      enemies_165: -1038861986
+      enemies_166: 1562150699
+      enemies_167: -141506638
+      enemies_168: -1691296114
+      enemies_169: -316839914
+      enemies_170: 1412317600
+      enemies_171: -853714075
+      enemies_172: 476407051
+      enemies_173: -643228880
+      enemies_174: -602522876
+      enemies_175: 963807662
+      enemies_176: 1310670702
+      enemies_177: 1528507191
+      enemies_178: 1642962830
+      enemies_179: -548627075
+      enemies_180: 399281775
+      enemies_181: 375273797
+      enemies_182: -614367228
+      enemies_183: -1513920209
+      enemies_184: -1029079080
+      enemies_185: -1291977411
+      enemies_186: -2054063927
+      enemies_187: 947667685
+      enemies_188: -591954339
+      enemies_189: 32198293
+      enemies_190: -999090996
+      enemies_191: -11205103
+      enemies_192: 734269579
+      enemies_193: 364663794
+      enemies_194: -1402711864
+      enemies_195: -300296463
+      enemies_196: 1441237678
+      enemies_197: 1695721194
+      enemies_198: 818999450
+      enemies_199: -511924726
+      enemies_20: -583798402
+      enemies_200: 1470279632
+      enemies_201: 254853941
+      enemies_202: 690425240
+      enemies_203: 1413527409
+      enemies_204: -341891938
+      enemies_205: 1090938252
+      enemies_206: -824626489
+      enemies_207: 1998175900
+      enemies_208: 1333942596
+      enemies_209: 1829124228
+      enemies_21: 761882981
+      enemies_210: -602969448
+      enemies_211: 945662013
+      enemies_212: 361700662
+      enemies_213: 164822056
+      enemies_214: 785655329
+      enemies_215: 601818944
+      enemies_216: -393595949
+      enemies_217: 171779822
+      enemies_218: 1586815536
+      enemies_219: 234132386
+      enemies_220: 1474460167
+      enemies_221: -172736335
+      enemies_222: 918786908
+      enemies_223: 1257020615
+      enemies_224: 1955905100
+      enemies_225: 442082206
+      enemies_226: -173606817
+      enemies_227: -2076016027
+      enemies_228: 755457588
+      enemies_229: -2118154158
+      enemies_230: 930246292
+      enemies_231: 1303947349
+      enemies_232: -243507284
+      enemies_233: -1402091234
+      enemies_234: 1334014835
+      enemies_235: -1845333973
+      enemies_236: 1892196710
+      enemies_237: -103504916
+      enemies_238: 1442931328
+      enemies_239: -1555664517
+      enemies_24: 1432444590
+      enemies_240: -1194426210
+      enemies_241: -1714897570
+      enemies_242: -568785199
+      enemies_243: -1480128655
+      enemies_244: 847146135
+      enemies_245: -484752304
+      enemies_246: 833950480
+      enemies_247: 728152743
+      enemies_248: -638816132
+      enemies_249: 398527302
+      enemies_25: 1146898118
+      enemies_250: 512229762
+      enemies_251: -1695224089
+      enemies_252: -1164361463
+      enemies_253: 1103952122
+      enemies_254: 1093906017
+      enemies_255: -2050757584
+      enemies_256: -1007261907
+      enemies_257: 401157945
+      enemies_258: -932812398
+      enemies_259: -1857285661
+      enemies_26: 602376240
+      enemies_260: -284469417
+      enemies_261: -1844083985
+      enemies_262: -425061892
+      enemies_263: -425321241
+      enemies_264: 1640498801
+      enemies_265: -1528889750
+      enemies_266: -87442214
+      enemies_267: 1515680203
+      enemies_268: 856908785
+      enemies_269: 105120142
+      enemies_27: -568787013
+      enemies_270: 1662250750
+      enemies_271: 1635144654
+      enemies_28: -1067960783
+      enemies_29: -1400357977
+      enemies_30: 69411771
+      enemies_31: -861420535
+      enemies_38: -872986491
+      enemies_39: -2124784280
+      enemies_4: -238542143
+      enemies_40: 451032425
+      enemies_41: -930817036
+      enemies_42: -1474693924
+      enemies_43: 1488002968
+      enemies_44: 197451397
+      enemies_45: -2071573982
+      enemies_46: -1474787799
+      enemies_47: -504313682
+      enemies_48: -1806539590
+      enemies_49: -1063625909
+      enemies_5: -1790678738
+      enemies_50: -1693347969
+      enemies_51: -305395301
+      enemies_52: -146018695
+      enemies_53: -1615716748
+      enemies_54: -584108419
+      enemies_55: 2051629433
+      enemies_56: 1705268481
+      enemies_57: 1571056555
+      enemies_58: 618711257
+      enemies_59: -390083830
+      enemies_60: 329504302
+      enemies_61: -1836352648
+      enemies_62: 1557892021
+      enemies_63: -1987367059
+      enemies_64: -117423067
+      enemies_65: -1340885957
+      enemies_66: 681268626
+      enemies_67: -62855440
+      enemies_68: -1007990769
+      enemies_69: 182911153
+      enemies_70: 1892363910
+      enemies_71: 146585867
+      enemies_72: -1419962533
+      enemies_73: -1338499677
+      enemies_74: 552087666
+      enemies_75: -667193095
+      enemies_76: -673050519
+      enemies_77: 2090905415
+      enemies_78: 835024471
+      enemies_79: 888318971
+      enemies_8: 670732839
+      enemies_80: 660370883
+      enemies_81: 111648827
+      enemies_82: 577524749
+      enemies_83: -1961182131
+      enemies_84: 1299880247
+      enemies_85: -2118704011
+      enemies_86: -1783734117
+      enemies_87: 1074233310
+      enemies_88: 1936104110
+      enemies_89: -1814061395
+      enemies_9: -1557157988
+      enemies_90: 1476473121
+      enemies_91: 1580698038
+      enemies_92: 550184462
+      enemies_93: 155041902
+      enemies_94: -987263537
+      enemies_95: 611284483
+      enemies_96: 762711192
+      enemies_97: -882260614
+      enemies_98: -1964916600
+      enemies_99: -473754112
+      enemies_maita_0: -1030796739
+      enemies_maita_1: -316839914
+      enemies_maita_2: -548627075
+      enemies_maita_3: 32198293
+      enemies_maita_attack_0: -861420535
+      enemies_maita_attack_1: -1697258462
+      enemies_maita_attack_2: 1627427267
+      enemies_maita_attack_3: -2085039432
+      enemies_maita_attack_4: -1384361713
+      enemies_maita_attack_5: -215787824
+      enemies_maita_bubble_0: 234132386
+      enemies_maita_bubble_1: -2118154158
+      enemies_zenchan_0: -396522542
+      enemies_zenchan_1: 1954643249
+      enemies_zenchan_2: -511924726
+      enemies_zenchan_3: -1400357977
+      enemies_zenchan_bubble_1: -654322799
+      enemies_zenchan_bubble_2: -1030796739
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
