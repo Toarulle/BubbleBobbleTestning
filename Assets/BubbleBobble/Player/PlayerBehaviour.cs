@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] private InputActionReference movement, jump, shoot;
     [SerializeField] private GameObject bubblePrefab = null;
-    [SerializeField] private AudioClip shootAudio  = null;
     [SerializeField] private Transform bubbleOrigin = null;
     
     [SerializeField] private float movementSpeed;
@@ -118,5 +116,19 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
+    }
+
+    private void Attacked(TargetBehaviour targetBehaviour)
+    {
+        
+    }
+    
+    private void OnEnable()
+    {
+        target.onAttack += Attacked;
+    }
+    private void OnDisable()
+    {
+        target.onAttack -= Attacked;
     }
 }

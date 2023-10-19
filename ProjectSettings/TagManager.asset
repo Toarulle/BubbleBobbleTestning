@@ -7,6 +7,7 @@ TagManager:
   - ZenChan
   - Bubble
   - Maita
+  - Boulder
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Platforms
   - Ground
   - Enemy
-  - 
+  - Boulder
   - 
   - 
   - 

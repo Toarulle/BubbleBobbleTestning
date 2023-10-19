@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -11,10 +12,14 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] public float maxFallSpeed = 0;
     [SerializeField] public TargetBehaviour target = null;
     [SerializeField] public Animator anim = null;
+    [SerializeField] public Transform groundCheckFront = null;
+    [SerializeField] private LayerMask groundLayer;
+
     public Rigidbody2D rb = null;
 
     public bool isFacingRight = false;
     [HideInInspector] public bool isCaught = true;
+    [HideInInspector] public bool onPlatform = true;
     [HideInInspector] public bool isAngry = false;
     [HideInInspector] public float timer = 0f;
     public static readonly int Angry = Animator.StringToHash("angry");
@@ -35,21 +40,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     public virtual void Update()
     {
-        
-        // TargetBehaviour playerTarget = LookForTarget();
-        // if (playerTarget != null)
-        // {
-        //     var targetDir = GetDirection(playerTarget.transform.position);
-        //     rb.position += Time.deltaTime * speed * targetDir;
-        // }
-        // if (!isFacingRight && rb.velocity.x > 0f)
-        // {
-        //     Flip();
-        // }
-        // else if (isFacingRight && rb.velocity.x < 0f)
-        // {
-        //     Flip();
-        // }
         if (isCaught)
         {
             if (transform.parent == null)
@@ -70,45 +60,43 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             timer += Time.deltaTime;
-            rb.velocity = new Vector2(isFacingRight ? speed : -speed, rb.velocity.y);
-            if (rb.velocity.y < 0f)
-            {
-                rb.velocity = new Vector2 (0, maxFallSpeed);
-            }
+
+            Patrolling();
         }
 
+        CheckAnger();
+    }
+
+    protected void Patrolling()
+    {
+        if (EndOfPlatformCheck() && onPlatform)
+        {
+            if (Random.Range(0,10) < 8)
+            {
+                Flip();
+            }
+            else
+            {
+                onPlatform = false;
+            }
+        }
+        
+        rb.velocity = new Vector2(isFacingRight ? speed : -speed, rb.velocity.y);
+        if (rb.velocity.y < 0f)
+        {
+            rb.velocity = new Vector2 (0, maxFallSpeed);
+        }
+    }
+    
+    protected void CheckAnger()
+    {
         if (timer >= angryTime)
         {
             MakeAngry();
         }
     }
 
-    // private Vector2 GetDirection(Vector3 targetPosition)
-    // {
-    //     Vector2 direction = (targetPosition - transform.position).normalized;
-    //     return direction;
-    // }
-    //
-    // private TargetBehaviour LookForTarget()
-    // {
-    //     int layerMask = LayerMask.GetMask("Player");
-    //     Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, aggroRange, layerMask);
-    //     if(playerCollider != null){
-    //         return playerCollider.GetComponent<TargetBehaviour>();
-    //     }
-    //     else
-    //     {
-    //         return null;
-    //     }
-    // }
-    //
-    // private void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.color = Color.white;
-    //     Gizmos.DrawWireSphere(transform.position, aggroRange);
-    // }
-
-    public void CaughtInBubble(TargetBehaviour target)
+    private void CaughtInBubble(TargetBehaviour target)
     {
         MakeAngry();
         isCaught = true;
@@ -130,6 +118,23 @@ public class EnemyBehaviour : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    protected bool EndOfPlatformCheck()
+    {
+        var col = Physics2D.OverlapCircle(groundCheckFront.position, 0.2f, groundLayer);
+        if (col == null)
+        { 
+            return true;
+        }
+
+        onPlatform = true;
+        return false;
+    }
+    
+    private bool GroundCheck()
+    {
+        return Physics2D.OverlapCircle(transform.position - new Vector3(0,-0.3f), 0.2f, groundLayer);
+    }
+    
     public virtual void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))

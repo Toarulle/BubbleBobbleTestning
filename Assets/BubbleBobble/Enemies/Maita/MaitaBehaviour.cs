@@ -1,86 +1,105 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MaitaBehaviour : EnemyBehaviour
 {
-    [SerializeField] private float aggroRange = 0;
-    [SerializeField] private float aggroHeightDiff = 0;
-    [SerializeField] private float jumpForce = 0;
+    [SerializeField] private float scanWidth = 0;
+    [SerializeField] private float scanHeight = 4f;
+    [Range(0,0.5f)][SerializeField] private float aggroHeightDiff = 0;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private GameObject boulderPrefab;
+    [SerializeField] private float reloadTime;
 
-    // public override void Update()
-    // {
-    //     TargetBehaviour playerTarget = LookForTarget();
-    //     if (playerTarget != null)
-    //     {
-    //         var targetDir = GetDirection(playerTarget.transform.position);
-    //         //rb.position += Time.deltaTime * speed * targetDir;
-    //         if (targetDir.y > transform.position.y+aggroHeightDiff)
-    //         {
-    //             RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.up, 4f, LayerMask.NameToLayer("Platforms"));
-    //             Debug.Log(ray + " - " + ray.distance);
-    //             if (IsOnGround() && ray.distance < jumpForce)
-    //             {
-    //                 JumpToPlatform();
-    //             }
-    //             else
-    //             {
-    //                 rb.position += Time.deltaTime * speed * targetDir;
-    //             }
-    //         }
-    //         else if (targetDir.y < transform.position.y-aggroHeightDiff)
-    //         {
-    //             
-    //         }
-    //         
-    //         if (!isFacingRight && rb.velocity.x > 0f)
-    //         {
-    //             Flip();
-    //         }
-    //         else if (isFacingRight && rb.velocity.x < 0f)
-    //         {
-    //             Flip();
-    //         }
-    //     }
-    //     else
-    //     {
-    //         base.Update();
-    //     }
-    // }
+    private bool reloading = false;
+    private float attackTimer = 0f;
 
-    private void JumpToPlatform()
+    public override void Update()
     {
-        rb.velocity = new Vector2(0, jumpForce);
+        if (!isCaught)
+        {
+            timer += Time.deltaTime;
+            TargetBehaviour playerTarget = LookForTarget();
+            if (playerTarget != null)
+            {
+                var targetDir = GetDirection(playerTarget.transform.position);
+                var distToPlayer = Math.Abs(playerTarget.transform.position.x - transform.position.x);
+                if (distToPlayer > 1.5f)
+                {
+                    rb.velocity = new Vector2(isFacingRight ? speed : -speed, rb.velocity.y);
+                }
+                else if (distToPlayer < 1.0f)
+                {
+                    rb.velocity = new Vector2(isFacingRight ? -speed : speed, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+
+                if (!reloading && targetDir.y < aggroHeightDiff)
+                {
+                    Shoot();
+                    reloading = true;
+                }
+                else
+                {
+                    attackTimer += Time.deltaTime;
+                    if (attackTimer >= reloadTime)
+                    {
+                        reloading = false;
+                        attackTimer = 0f;
+                    }
+                }
+
+                if (!isFacingRight && playerTarget.transform.position.x > transform.position.x + 0.2f)
+                {
+                    Flip();
+                }
+                else if (isFacingRight && playerTarget.transform.position.x < transform.position.x - 0.2f)
+                {
+                    Flip();
+                }
+            }
+            else
+            {
+                Patrolling();
+            }
+        }
+        else
+        {
+            base.Update();
+        }
+        CheckAnger();
     }
-    public bool IsOnGround()
+    
+    public void Shoot()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, LayerMask.NameToLayer("Platforms"));
+        var boulder = Instantiate(boulderPrefab, transform.position, Quaternion.identity).GetComponent<BoulderBehaviour>();
+        boulder.BoulderStartingMovement(isFacingRight);
     }
     private Vector2 GetDirection(Vector3 targetPosition)
     {
-        Vector2 direction = (targetPosition - transform.position).normalized;
-        return direction;
+        return targetPosition - transform.position;
     }
     
     private TargetBehaviour LookForTarget()
     {
         int layerMask = LayerMask.GetMask("Player");
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, aggroRange, layerMask);
+        Collider2D playerCollider = Physics2D.OverlapBox(transform.position, new Vector2(scanWidth*2,scanHeight), 0, layerMask);
         if(playerCollider != null){
             return playerCollider.GetComponent<TargetBehaviour>();
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
     
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, aggroRange);
+        Gizmos.DrawWireCube(transform.position, new Vector2(scanWidth*2,scanHeight));
     }
 
     public override void OnCollisionEnter2D(Collision2D col)
