@@ -8,17 +8,18 @@ public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject bubblePrefab = null;
     [SerializeField] private Transform bubbleOrigin = null;
-    
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float maxFallSpeed;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask bubbleLayer;
+    [SerializeField] private TargetBehaviour target = null;
+    [SerializeField] private DeathPortObject deathPort = null;
     
     private Rigidbody2D rb = null;
     private Animator anim = null;
-    private TargetBehaviour target = null;
 
     private float movementInput;
 
@@ -33,7 +34,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        target = GetComponent<TargetBehaviour>();
     }
 
     void Update()
@@ -110,7 +110,7 @@ public class PlayerBehaviour : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer)||Physics2D.OverlapCircle(groundCheck.position, 0.2f, bubbleLayer);
     }
     
-    private void Flip()
+    public void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -120,7 +120,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Attacked(TargetBehaviour targetBehaviour)
     {
-        
+        deathPort.Killed(-1);
+        Destroy(gameObject);
     }
     
     private void OnEnable()

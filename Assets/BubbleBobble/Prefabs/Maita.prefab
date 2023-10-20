@@ -167,11 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 0
   speed: 1.4
-  jumpForce: 4.42
   angrySpeed: 2
   angryTime: 7
   maxFallSpeed: -3
   target: {fileID: 4907142710517969119}
+  deathPort: {fileID: 11400000, guid: d8a4131ce4156324ab469b0bebf45303, type: 2}
   anim: {fileID: 4907142710517969116}
   groundCheckFront: {fileID: 4907142709797314960}
   groundLayer:
@@ -181,7 +181,6 @@ MonoBehaviour:
   isFacingRight: 0
   isCaught: 1
   onPlatform: 1
-  isJumping: 0
   isAngry: 0
   timer: 0
   scanWidth: 7.15

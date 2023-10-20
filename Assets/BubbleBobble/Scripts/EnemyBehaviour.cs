@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] public float angryTime = 0;
     [SerializeField] public float maxFallSpeed = 0;
     [SerializeField] public TargetBehaviour target = null;
+    [SerializeField] public DeathPortObject deathPort = null;
     [SerializeField] public Animator anim = null;
     [SerializeField] public Transform groundCheckFront = null;
     [SerializeField] private LayerMask groundLayer;
@@ -18,7 +21,8 @@ public class EnemyBehaviour : MonoBehaviour
     public Rigidbody2D rb = null;
 
     public bool isFacingRight = false;
-    [HideInInspector] public bool isCaught = true;
+    [HideInInspector] public bool isCaught = false;
+    [HideInInspector] public bool isSpawning = true;
     [HideInInspector] public bool onPlatform = true;
     [HideInInspector] public bool isAngry = false;
     [HideInInspector] public float timer = 0f;
@@ -36,19 +40,23 @@ public class EnemyBehaviour : MonoBehaviour
 
         GetComponent<Collider2D>().isTrigger = true;
         rb.isKinematic = true;
+        isCaught = false;
     }
 
     public virtual void Update()
     {
-        if (isCaught)
+        if (isCaught || isSpawning)
         {
             if (transform.parent == null)
             {
                 anim.SetBool(Angry, isAngry);
                 GetComponent<Collider2D>().isTrigger = false;
+                GetComponent<Collider2D>().enabled = true;
+                GetComponent<SpriteRenderer>().enabled = true;
                 rb.isKinematic = false;
                 rb.velocity = new Vector2(isFacingRight ? speed : -speed, rb.velocity.y);
                 isCaught = false;
+                isSpawning = false;
                 return;
             }
 
@@ -96,11 +104,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private void CaughtInBubble(TargetBehaviour target)
+    private void CaughtInBubble()
     {
         MakeAngry();
         isCaught = true;
         rb.velocity = Vector2.zero;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private void MakeAngry()
@@ -143,13 +153,36 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    private void GetCaughtOrKilled(TargetBehaviour target)
+    {
+        if (!isCaught)
+        {
+            CaughtInBubble();
+        }
+        else if (isCaught)
+        {
+            IsDying();
+        }
+    }
+
+    private void IsDying()
+    {
+        Destroy(gameObject);
+        deathPort.Killed(points);
+    }
+
+    private void OnDestroy()
+    {
+        IsDying();
+    }
+
     private void OnEnable()
     {
-        target.onAttack += CaughtInBubble;
+        target.onAttack += GetCaughtOrKilled;
     }
     
     private void OnDisable()
     {
-        target.onAttack -= CaughtInBubble;
+        target.onAttack -= GetCaughtOrKilled;
     }
 }

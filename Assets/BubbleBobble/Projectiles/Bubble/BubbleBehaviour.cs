@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BubbleBehaviour : MonoBehaviour
@@ -12,12 +11,13 @@ public class BubbleBehaviour : MonoBehaviour
     [SerializeField] private float shootSpeed;
     [SerializeField] private float shootRange;
     [SerializeField] private float floatingSpeed;
-    [SerializeField] private float holdEnemyTime;
+    [SerializeField] public float holdEnemyTime;
     [SerializeField] private float popCloseBubblesRange;
     [SerializeField] private LayerMask bubbleLayer;
 
     
     private float movedAmount = 0f;
+    private TargetBehaviour containedTarget = null;
     private Vector2 previousLocation = new Vector2();
     private Collider2D collider = null;
     [HideInInspector]public bool firstMovementDone = false;
@@ -49,7 +49,7 @@ public class BubbleBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, floatingSpeed);
         }
-
+        
         if (containEnemy)
         {
             containTimer += Time.deltaTime;
@@ -58,10 +58,13 @@ public class BubbleBehaviour : MonoBehaviour
                 ReleaseEnemy();
             }
         }
-
+        
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Destroy"))
         {
-            Destroy(gameObject);
+            if (containedTarget == null && !containEnemy)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -90,6 +93,8 @@ public class BubbleBehaviour : MonoBehaviour
         {
             GameBehaviour.Instance.PopBubbleWithEnemySound();
         }
+        containEnemy = false;
+        containedTarget = null;
         PopCloseBubbles();
     }
     
@@ -116,15 +121,22 @@ public class BubbleBehaviour : MonoBehaviour
     {
         target.transform.SetParent(transform);
         target.Attack();
+        containedTarget = target;
         containEnemy = true;
         TurnToBigBubble();
     }
 
     private void ReleaseEnemy()
     {
-        transform.GetChild(0).gameObject.SetActive(true);
-        transform.DetachChildren();
-        containEnemy = false;
+        if (transform.childCount>0)
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.DetachChildren();
+            containedTarget.transform.position = transform.position;
+            containEnemy = false;
+            containedTarget = null;
+            containTimer = 0;
+        }
         PopBubble();
     }
 
@@ -138,7 +150,7 @@ public class BubbleBehaviour : MonoBehaviour
         if (!firstMovementDone && !containEnemy && col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             CatchEnemyInBubble(col.GetComponent<TargetBehaviour>());
-            col.gameObject.SetActive(false);
+            //col.gameObject.SetActive(false);
         }
         if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
@@ -170,6 +182,10 @@ public class BubbleBehaviour : MonoBehaviour
                 return;
             
             PopBubble();
+            if (containEnemy)
+            {
+                containedTarget.Attack();
+            }
         }
     }
 }

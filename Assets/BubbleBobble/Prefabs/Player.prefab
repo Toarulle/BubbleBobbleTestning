@@ -135,9 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb66d89eaaa04140bea39a95eb23060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: -7645865004933348926, guid: 72f7b62cc6f20004ca1182a059130068, type: 3}
-  jump: {fileID: -7150040395321091743, guid: 72f7b62cc6f20004ca1182a059130068, type: 3}
-  shoot: {fileID: -5494816496737595973, guid: 72f7b62cc6f20004ca1182a059130068, type: 3}
   bubblePrefab: {fileID: 8332077400556488520, guid: 6d801ace7e9f0f14a9fdfdf5317023c1, type: 3}
   bubbleOrigin: {fileID: 4607944266030551826}
   movementSpeed: 4
@@ -150,6 +147,8 @@ MonoBehaviour:
   bubbleLayer:
     serializedVersion: 2
     m_Bits: 8
+  target: {fileID: 4475241295914147560}
+  deathPort: {fileID: 11400000, guid: d8a4131ce4156324ab469b0bebf45303, type: 2}
   isFacingRight: 1
 --- !u!114 &4940212141037911758
 MonoBehaviour:

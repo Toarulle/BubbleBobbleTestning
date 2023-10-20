@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,7 +18,7 @@ public class MaitaBehaviour : EnemyBehaviour
 
     public override void Update()
     {
-        if (!isCaught)
+        if (!isCaught && !isSpawning)
         {
             timer += Time.deltaTime;
             TargetBehaviour playerTarget = LookForTarget();

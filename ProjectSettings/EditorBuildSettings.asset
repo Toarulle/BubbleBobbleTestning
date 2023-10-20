@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/IntegrationTests/ZenChanScene.unity
     guid: dde89e66d126fdf418e410d0ff033b44
+  - enabled: 1
+    path: Assets/BubbleBobble/Scenes/Loading.unity
+    guid: 9a67a5d53b736d249875947e1a317b10
+  - enabled: 1
+    path: Assets/IntegrationTests/MaitaScene.unity
+    guid: 3deee731c849b0e498e6eef2a1a10f81
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f69bc25ab34b6c24cbd8d46c083fde61, type: 2}
