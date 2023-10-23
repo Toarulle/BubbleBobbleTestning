@@ -21,7 +21,6 @@ public class ZenChanTests
         scene = SceneManager.GetSceneByName(sceneName);
         SceneManager.SetActiveScene(scene);
         zenChanBehaviour = Object.FindObjectOfType<ZenChanBehaviour>();
-        zenChanBehaviour.isSpawning = false;
         yield return null;
     }
 

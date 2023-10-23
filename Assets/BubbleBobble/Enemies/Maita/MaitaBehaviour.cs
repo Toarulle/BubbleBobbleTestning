@@ -9,7 +9,6 @@ public class MaitaBehaviour : EnemyBehaviour
     [SerializeField] private float scanWidth = 0;
     [SerializeField] private float scanHeight = 4f;
     [Range(0,0.5f)][SerializeField] private float aggroHeightDiff = 0;
-    [SerializeField] private Transform groundCheck;
     [SerializeField] private GameObject boulderPrefab;
     [SerializeField] private float reloadTime;
 

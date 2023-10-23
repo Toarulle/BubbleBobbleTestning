@@ -16,6 +16,7 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField] private AudioClip popBubbleWithEnemyAudio = null; 
     [SerializeField] private float volume = 0.6f; 
     [SerializeField] private DeathPortObject deathPort; 
+    [SerializeField] private SFXPortObject sfxPort; 
     [SerializeField] private TextMeshProUGUI endGameText;
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private GameObject playerPrefab;
@@ -56,18 +57,20 @@ public class GameBehaviour : MonoBehaviour
         }
     }
 
-
-    public void PlayerJumpSound()
+    private void PlaySound(string sound)
     {
-        audioSource.PlayOneShot(playerJumpAudio, volume);
-    }
-    public void PopBubbleWithEnemySound()
-    {
-        audioSource.PlayOneShot(popBubbleWithEnemyAudio, volume);
-    }
-    public void ShootBubbleSound()
-    {
-        audioSource.PlayOneShot(bubbleShootBubbleAudio, volume);
+        switch (sound)
+        {
+            case "PlayerJump":
+                audioSource.PlayOneShot(playerJumpAudio, volume);
+                break;
+            case "ShootBubble":
+                audioSource.PlayOneShot(bubbleShootBubbleAudio, volume);
+                break;
+            case "PopBubbleWithEnemy":
+                audioSource.PlayOneShot(popBubbleWithEnemyAudio, volume);
+                break;
+        }
     }
 
     private void EndGame(string endGameText)
@@ -87,7 +90,7 @@ public class GameBehaviour : MonoBehaviour
         }
     }
 
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
         Instantiate(playerPrefab, playerSpawnPoint.position, Quaternion.identity);
     }
@@ -135,11 +138,13 @@ public class GameBehaviour : MonoBehaviour
     {
         deathPort.OnDeath += SomethingDied;
         SceneManager.sceneLoaded += ResetLevel;
+        sfxPort.OnPlaySound += PlaySound;
     }
 
     private void OnDisable()
     {
         deathPort.OnDeath -= SomethingDied;
         SceneManager.sceneLoaded -= ResetLevel;
+        sfxPort.OnPlaySound -= PlaySound;
     }
 }

@@ -88,7 +88,7 @@ public class BubbleTests
     }
     
     [UnityTest]
-    public IEnumerator Bubble_StartingMovementRight_CatchEnemy()
+    public IEnumerator Bubble_StartingMovement_BubbleHitsEnemy_CatchEnemy()
     {
         bool playerFacingRight = true;
         zenChanEnemy.gameObject.SetActive(true);

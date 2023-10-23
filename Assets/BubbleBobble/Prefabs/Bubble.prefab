@@ -105,15 +105,13 @@ MonoBehaviour:
   shootSpeed: 6.95
   shootRange: 2.66
   floatingSpeed: 1
-  bounceLength: 0.3
   holdEnemyTime: 5
   popCloseBubblesRange: 0.49
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 768
   bubbleLayer:
     serializedVersion: 2
     m_Bits: 8
+  sfxPort: {fileID: 11400000, guid: c22405f42e25afd4ca9ed79be9c64db6, type: 2}
+  firstMovementDone: 0
 --- !u!50 &7018470928668705958
 Rigidbody2D:
   serializedVersion: 4

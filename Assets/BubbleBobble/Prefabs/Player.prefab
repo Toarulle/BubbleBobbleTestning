@@ -149,6 +149,7 @@ MonoBehaviour:
     m_Bits: 8
   target: {fileID: 4475241295914147560}
   deathPort: {fileID: 11400000, guid: d8a4131ce4156324ab469b0bebf45303, type: 2}
+  sfxPort: {fileID: 11400000, guid: c22405f42e25afd4ca9ed79be9c64db6, type: 2}
   isFacingRight: 1
 --- !u!114 &4940212141037911758
 MonoBehaviour:

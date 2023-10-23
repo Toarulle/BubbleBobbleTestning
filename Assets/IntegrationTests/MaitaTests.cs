@@ -123,4 +123,16 @@ public class MaitaTests
         Assert.True(Object.FindObjectOfType<BoulderBehaviour>());
         yield return null;
     }
+    
+    [UnityTest]
+    public IEnumerator Maita_Patrolling_AfterAngryTime_TurnAngry()
+    {
+        Assert.False(maitaBehaviour.isAngry);
+        while (!maitaBehaviour.isAngry)
+        {
+            yield return new WaitForFixedUpdate(); 
+        }
+        Assert.True(maitaBehaviour.isAngry);
+        yield return null;
+    }
 }

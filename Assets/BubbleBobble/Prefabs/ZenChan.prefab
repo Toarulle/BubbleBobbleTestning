@@ -136,7 +136,7 @@ MonoBehaviour:
   points: 0
   speed: 1.5
   angrySpeed: 2.2
-  angryTime: 6
+  angryTime: 12
   maxFallSpeed: -3
   target: {fileID: 5504690921413868971}
   deathPort: {fileID: 11400000, guid: d8a4131ce4156324ab469b0bebf45303, type: 2}
@@ -148,6 +148,8 @@ MonoBehaviour:
   rb: {fileID: 1406698878}
   isFacingRight: 0
   isCaught: 1
+  isDying: 0
+  isSpawning: 1
   onPlatform: 1
   isAngry: 0
   timer: 0

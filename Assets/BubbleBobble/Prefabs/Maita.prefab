@@ -168,7 +168,7 @@ MonoBehaviour:
   points: 0
   speed: 1.4
   angrySpeed: 2
-  angryTime: 7
+  angryTime: 15
   maxFallSpeed: -3
   target: {fileID: 4907142710517969119}
   deathPort: {fileID: 11400000, guid: d8a4131ce4156324ab469b0bebf45303, type: 2}
@@ -180,13 +180,14 @@ MonoBehaviour:
   rb: {fileID: 4907142710517969118}
   isFacingRight: 0
   isCaught: 1
+  isDying: 0
+  isSpawning: 1
   onPlatform: 1
   isAngry: 0
   timer: 0
   scanWidth: 7.15
   scanHeight: 4
   aggroHeightDiff: 0.14
-  groundCheck: {fileID: 4907142709550636042}
   boulderPrefab: {fileID: 8332077400556488520, guid: 172ff46698bfd84458f52c4af2c78430, type: 3}
   reloadTime: 2.54
 --- !u!95 &4907142710517969116

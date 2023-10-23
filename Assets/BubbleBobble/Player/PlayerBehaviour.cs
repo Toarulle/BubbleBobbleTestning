@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private LayerMask bubbleLayer;
     [SerializeField] private TargetBehaviour target = null;
     [SerializeField] private DeathPortObject deathPort = null;
+    [SerializeField] private SFXPortObject sfxPort = null;
     
     private Rigidbody2D rb = null;
     private Animator anim = null;
@@ -81,7 +82,7 @@ public class PlayerBehaviour : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.SetBool(IsJumping, true);
             isJumping = true;
-            GameBehaviour.Instance.PlayerJumpSound();
+            sfxPort.Play("PlayerJump");
         }
 
         if (context.canceled && rb.velocity.y > 0f)
@@ -101,7 +102,7 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetTrigger(ShootTrigger);
             var bubble = Instantiate(bubblePrefab, bubbleOrigin.position, Quaternion.identity).GetComponent<BubbleBehaviour>();
             bubble.BubbleStartingMovement(isFacingRight);
-            GameBehaviour.Instance.ShootBubbleSound();
+            sfxPort.Play("ShootBubble");
         }
     }
     

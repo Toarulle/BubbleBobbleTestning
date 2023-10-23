@@ -22,8 +22,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     public bool isFacingRight = false;
     [HideInInspector] public bool isCaught = false;
+    [HideInInspector] public bool isDying = false;
     [HideInInspector] public bool isSpawning = true;
-    [HideInInspector] public bool onPlatform = true;
+    [HideInInspector] public bool onPlatform = false;
     [HideInInspector] public bool isAngry = false;
     [HideInInspector] public float timer = 0f;
     public static readonly int Angry = Animator.StringToHash("angry");
@@ -45,9 +46,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     public virtual void Update()
     {
-        if (isCaught || isSpawning)
+        if (isCaught || isSpawning || isDying)
         {
-            if (transform.parent == null)
+            if (transform.parent == null && !isDying)
             {
                 anim.SetBool(Angry, isAngry);
                 GetComponent<Collider2D>().isTrigger = false;
@@ -139,12 +140,7 @@ public class EnemyBehaviour : MonoBehaviour
         onPlatform = true;
         return false;
     }
-    
-    private bool GroundCheck()
-    {
-        return Physics2D.OverlapCircle(transform.position - new Vector3(0,-0.3f), 0.2f, groundLayer);
-    }
-    
+
     public virtual void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
@@ -155,25 +151,22 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void GetCaughtOrKilled(TargetBehaviour target)
     {
+        Debug.Log(isCaught);
         if (!isCaught)
         {
             CaughtInBubble();
         }
         else if (isCaught)
         {
+            isDying = true;
             IsDying();
         }
     }
 
     private void IsDying()
     {
-        Destroy(gameObject);
         deathPort.Killed(points);
-    }
-
-    private void OnDestroy()
-    {
-        IsDying();
+        Destroy(gameObject);
     }
 
     private void OnEnable()

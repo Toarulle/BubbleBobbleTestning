@@ -14,7 +14,7 @@ public class BubbleBehaviour : MonoBehaviour
     [SerializeField] public float holdEnemyTime;
     [SerializeField] private float popCloseBubblesRange;
     [SerializeField] private LayerMask bubbleLayer;
-
+    [SerializeField] private SFXPortObject sfxPort;
     
     private float movedAmount = 0f;
     private TargetBehaviour containedTarget = null;
@@ -76,26 +76,31 @@ public class BubbleBehaviour : MonoBehaviour
             var bubBeh = bubble.GetComponent<BubbleBehaviour>();
             if (!bubBeh.Popped)
             {
-                bubBeh.PopBubble();
+                bubBeh.PopBubble(true);
             }
         }
     }
     
-    public void PopBubble()
+    public void PopBubble(bool popOtherBubbles)
     {
+        if (Popped) return;
         Popped = true;
         animator.SetTrigger(Pop);
         rb.isKinematic = true;
         floatingSpeed = 0;
+        rb.velocity = Vector2.zero;
         collider.isTrigger = true;
         containTimer = 0;
         if (containEnemy)
         {
-            GameBehaviour.Instance.PopBubbleWithEnemySound();
+            sfxPort.Play("PopBubbleWithEnemy");
         }
         containEnemy = false;
         containedTarget = null;
-        PopCloseBubbles();
+        if (popOtherBubbles)
+        {
+            PopCloseBubbles();
+        }
     }
     
     private void TurnToBigBubble()
@@ -137,7 +142,7 @@ public class BubbleBehaviour : MonoBehaviour
             containedTarget = null;
             containTimer = 0;
         }
-        PopBubble();
+        PopBubble(false);
     }
 
     private void OnDrawGizmosSelected()
@@ -152,9 +157,9 @@ public class BubbleBehaviour : MonoBehaviour
             CatchEnemyInBubble(col.GetComponent<TargetBehaviour>());
             //col.gameObject.SetActive(false);
         }
-        if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
+        else if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            TurnToBigBubble();
+            PopBubble(false);
         }
 
         string trigger = "";
@@ -178,14 +183,14 @@ public class BubbleBehaviour : MonoBehaviour
     {
         if (firstMovementDone && col.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (col.transform.position.y > transform.position.y + 0.1f)
+            if (col.transform.position.y > transform.position.y + 0.2f)
                 return;
             
-            PopBubble();
             if (containEnemy)
             {
                 containedTarget.Attack();
             }
+            PopBubble(true);
         }
     }
 }
