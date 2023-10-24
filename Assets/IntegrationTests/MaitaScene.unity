@@ -470,6 +470,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maita
       objectReference: {fileID: 0}
+    - target: {fileID: 4907142710517969117, guid: 2dc90b36544b67046bb8e9c8ab348f39, type: 3}
+      propertyPath: angryTime
+      value: 2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907142710517969117, guid: 2dc90b36544b67046bb8e9c8ab348f39, type: 3}
+      propertyPath: distanceToKeepFromPlayer
+      value: 0.99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dc90b36544b67046bb8e9c8ab348f39, type: 3}
 --- !u!1 &1932724308

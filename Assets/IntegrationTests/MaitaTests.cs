@@ -106,11 +106,17 @@ public class MaitaTests
     public IEnumerator Maita_PlayerInRange_StartMoveToPlayer_StopInFrontOfPlayer()
     {
         player.SetActive(true);
-        yield return new WaitForSeconds(standardWaitTime*10);
-        var x0 = maitaBehaviour.transform.position.x;
-        yield return new WaitForSeconds(standardWaitTime*4);
-        var x1 = maitaBehaviour.transform.position.x;
-        Assert.AreEqual(x0, x1);
+        var maitaX = maitaBehaviour.transform.position.x;
+        var playerX = player.transform.position.x;
+        var distance = Mathf.Abs(playerX - maitaX);
+        do
+        {
+            yield return new WaitForFixedUpdate();
+            maitaX = maitaBehaviour.transform.position.x;
+            distance = Mathf.Abs(playerX - maitaX);
+        } while (distance > maitaBehaviour.distanceToKeepFromPlayer);
+        yield return new WaitForSeconds(standardWaitTime);
+        Assert.True(distance <= maitaBehaviour.distanceToKeepFromPlayer);
         yield return null;
     }
     

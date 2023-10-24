@@ -94,6 +94,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (rb.velocity.y < 0f)
         {
             rb.velocity = new Vector2 (0, maxFallSpeed);
+            onPlatform = false;
         }
     }
     
@@ -143,6 +144,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public virtual void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log(col.gameObject.name);
         if (col.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
             Flip();

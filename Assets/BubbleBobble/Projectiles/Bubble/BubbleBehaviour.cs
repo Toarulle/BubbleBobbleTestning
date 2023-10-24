@@ -28,7 +28,6 @@ public class BubbleBehaviour : MonoBehaviour
 
     public bool Popped { get; private set; } = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<CircleCollider2D>();

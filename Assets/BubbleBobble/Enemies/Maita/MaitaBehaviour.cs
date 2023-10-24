@@ -10,7 +10,9 @@ public class MaitaBehaviour : EnemyBehaviour
     [SerializeField] private float scanHeight = 4f;
     [Range(0,0.5f)][SerializeField] private float aggroHeightDiff = 0;
     [SerializeField] private GameObject boulderPrefab;
+    [SerializeField] private Transform boulderOrigin;
     [SerializeField] private float reloadTime;
+    [SerializeField] public float distanceToKeepFromPlayer;
 
     private bool reloading = false;
     private float attackTimer = 0f;
@@ -25,11 +27,11 @@ public class MaitaBehaviour : EnemyBehaviour
             {
                 var targetDir = GetDirection(playerTarget.transform.position);
                 var distToPlayer = Math.Abs(playerTarget.transform.position.x - transform.position.x);
-                if (distToPlayer > 1.5f)
+                if (distToPlayer > distanceToKeepFromPlayer)
                 {
                     rb.velocity = new Vector2(isFacingRight ? speed : -speed, rb.velocity.y);
                 }
-                else if (distToPlayer < 1.0f)
+                else if (distToPlayer < distanceToKeepFromPlayer-0.3f)
                 {
                     rb.velocity = new Vector2(isFacingRight ? -speed : speed, rb.velocity.y);
                 }
@@ -76,7 +78,7 @@ public class MaitaBehaviour : EnemyBehaviour
     
     public void Shoot()
     {
-        var boulder = Instantiate(boulderPrefab, transform.position, Quaternion.identity).GetComponent<BoulderBehaviour>();
+        var boulder = Instantiate(boulderPrefab, boulderOrigin.position, Quaternion.identity).GetComponent<BoulderBehaviour>();
         boulder.BoulderStartingMovement(isFacingRight);
     }
     private Vector2 GetDirection(Vector3 targetPosition)
@@ -87,7 +89,8 @@ public class MaitaBehaviour : EnemyBehaviour
     private TargetBehaviour LookForTarget()
     {
         int layerMask = LayerMask.GetMask("Player");
-        Collider2D playerCollider = Physics2D.OverlapBox(transform.position, new Vector2(scanWidth*2,scanHeight), 0, layerMask);
+        Collider2D playerCollider = Physics2D.OverlapBox(transform.position,
+            new Vector2(scanWidth*2,scanHeight), 0, layerMask);
         if(playerCollider != null){
             return playerCollider.GetComponent<TargetBehaviour>();
         }
